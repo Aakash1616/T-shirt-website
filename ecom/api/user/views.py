@@ -26,10 +26,10 @@ def signin(request):
     username = request.POST['email']
     password = request.POST['password'] 
 
-    if not re.match("/^([\w\.\-_]+)?\w+@[\w-_]+(\.\w+){1,}$", username):
+    if not re.match("^[\w\.\+\-]+\@[\w]+\.[a-z]{2,3}$", username):
         return JsonResponse({'error' : 'Enter a valid pattern'})
 
-    if password<3:
+    if len(password)<3:
         return JsonResponse({'error' : 'pass needs least 3 letter'})
 
     UserModel = get_user_model() 
